@@ -1,0 +1,21 @@
+name: CI
+on: pull_request
+    
+jobs:
+  doit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: each alone
+        run: |
+          echo message is: ${{ github.event.commits[0].message }}
+          echo message contains [skip ci]: ${{ contains(github.event.commits[0].message, "[skip ci]") }} 
+          echo actor is: ${{ github.actor }}
+          echo actor is not bot is: ${{ github.actor != 'sbosnick-bot' }}
+          echo not [skip ci] and not bot: ${{ !contains(github.event.commits[0].message, "[skip ci]") && github.actor != 'sbosnick-bot' }}
+      - name: combined
+        run: >-
+          echo ${{
+          !contains(github.event.commits[0].message, "[skip ci]")
+          && github.actor != 'sbosnick-bot'
+          }}
