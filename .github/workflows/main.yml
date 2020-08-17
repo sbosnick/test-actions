@@ -16,6 +16,6 @@ jobs:
       - name: combined
         run: >-
           echo ${{
-          !contains(github.event.commits[0].message, "[skip ci]")
+          !contains(github.event.commits[0].message, '[skip ci]')
           && github.actor != 'sbosnick-bot'
           }}
