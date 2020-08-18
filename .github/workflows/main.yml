@@ -9,8 +9,9 @@ jobs:
       - run: echo "${{ toJson(github.event) }}"
       - name: each alone
         run: |
-          echo message is: ${{ github.event.commits[0].message }}
-          echo message contains [skip ci]: ${{ contains(github.event.commits[0].message, '[skip ci]') }} 
+          echo title is ${{ github.event.pull_request.title }}
+          echo body is ${{ github.event.pull_request.body }}
+          echo body contains [skip ci]: ${{ contains(github.event.pull_request.body, '[skip ci]') }}
           echo actor is: ${{ github.actor }}
           echo actor is not bot is: ${{ github.actor != 'sbosnick-bot' }}
           echo not [skip ci] and not bot: ${{ !contains(github.event.commits[0].message, '[skip ci]') && github.actor != 'sbosnick-bot' }}
