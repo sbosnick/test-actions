@@ -9,7 +9,6 @@ jobs:
       - run: echo ${{ toJson(github.event) }}
       - name: each alone
         run: |
-          echo ${{ toJson(github.event) }}
           echo message is: ${{ github.event.commits[0].message }}
           echo message contains [skip ci]: ${{ contains(github.event.commits[0].message, '[skip ci]') }} 
           echo actor is: ${{ github.actor }}
